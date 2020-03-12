@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CFTB Help Homepage</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> <!-- Got from this link: https://materializecss.com/getting-started.html -->
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo c">Computers for the Blind Help</a>
+        </div>
+    </nav>
+    <ul></ul> <!-- ul = unordered list -->
+
+    <div class="container">
+        <form>
+            <label for="question-text" style="font-size:60px; text-align:center; color:black;">What issue are you having?</label>
+            <input type="text" id="question-text" name="question-text" placeholder="Start typing" style="font-size:15px; text-align:center; color:black;" autofocus><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        const electron = require('electron');
+        const {ipcRenderer} = electron;
+        const ul = document.querySelector('ul');
+
+        // Catch question when entered into form
+        const form = document.querySelector('form');
+        form.addEventListener('submit', submitForm);
+        function submitForm(e) {
+            e.preventDefault(); // Do not submit to a file (as it normally would)
+            const item = document.querySelector('#question-text').value;
+            console.log(item);
+            
+            ipcRenderer.send('item:question',item);
+        }
+
+        // Read question and add to list
+        ipcRenderer.on('item:question', function(e, item) {
+            ul.innerHTML = '';
+            ul.className = 'collection';
+            const li = document.createElement('li'); //li = list item
+            li.className = 'collection-item';
+            const itemText = document.createTextNode(item);
+            li.appendChild(itemText);
+            ul.appendChild(li);
+        });
+
+        // Clear items
+        ipcRenderer.on('item:clear', function() {
+            ul.innerHTML = '';
+            ul.className = '';
+        });
+
+        // Remove item
+        ul.addEventListener('dblclick', removeItem);
+        function removeItem(e) {
+            e.target.remove();
+            if(ul.children.length == 0) {
+                ul.className = ''; //gets rid of weird empty ul box at top
+            }
+        }
+
+    </script>
+
+    <!-- Input row -->
+    <!-- <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+          <h3 class="hash-heading" style="font-size:60px; text-align:center;">What issue are you having?</h3>
+          <textarea rows="2" id="text-input" class="form-control text-input" placeholder="Start typing"></textarea>
+        </div>
+    </div> -->
+
+    <!-- Common issues -->
+    <h1 style="font-size:30px; text-align:center;">This is a common issue</h1>
+        <p style="font-size:15px; text-align:center;">This is a preview of the solution.</p>
+    <hr>
+    <h1 style="font-size:30px; text-align:center;">This is a common issue</h1>
+        <p style="font-size:15px; text-align:center;">This is a preview of the solution.</p>
+    <hr>
+</body>
+
+</html>
