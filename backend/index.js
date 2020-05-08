@@ -10,7 +10,7 @@ dotenv.config({ path: './config/config.env' });
 connectDB();
 
 const solutions = require('./routes/solutions');
-//const tickets = require('./routes/tickets');
+const tickets = require('./routes/tickets');
 
 const app = express();
 
@@ -28,10 +28,10 @@ app.use(
     solutions
 );
 
-// app.use(
-//     '/api/v1/tickets', 
-//     tickets
-// );
+app.use(
+    '/api/v1/tickets', 
+    tickets
+);
 
 const PORT = process.env.PORT || 8000;
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getSolutions, addSolution, getSolution } = require('../controllers/solution_controller');
+const { getSolutions, addSolution, getSolution , deleteSolution , updateSolution } = require('../controllers/solution_controller');
 
 router
     .route('/')
@@ -8,7 +8,9 @@ router
     .post(addSolution);
 
 router
-    .route('/solution/:id')
+    .route('/:id')
     .get(getSolution)
+    .delete(deleteSolution)
+    .patch(updateSolution);
     
 module.exports = router;

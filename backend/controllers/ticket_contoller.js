@@ -1,16 +1,16 @@
-const Solution = require('../models/solution_model');
+const Ticket = require('../models/ticket_model');
 
-// @desc    Get all solutions
-// @route   GET /api/v1/solutions
+// @desc    Get all ticket
+// @route   GET /api/v1/tickets
 // @access  Public
-exports.getSolutions = async (req, res, next) => {
+exports.getTickets = async (req, res, next) => {
     try {
-        const solutions = await Solution.find();
+        const tickets = await Ticket.find();
 
         return res.status(200).json({
             success: true,
-            count: solutions.length,
-            data: solutions
+            count: tickets.length,
+            data: tickets
         });
     } catch (error) {
         return res.status(500).json({
@@ -20,16 +20,16 @@ exports.getSolutions = async (req, res, next) => {
     }
 }
 
-// @desc    Add a solution
-// @route   POST /api/v1/solutions
+// @desc    Add a ticket
+// @route   POST /api/v1/tickets
 // @access  Public
-exports.addSolution = async (req, res, next) => {
+exports.addTicket = async (req, res, next) => {
     try {
-        const solution = await Solution.create(req.body);
+        const ticket = await Ticket.create(req.body);
 
         return res.status(201).json({
             success: true,
-            data: solution
+            data: ticket
         });
     } catch (error) {
         if(error.name === 'ValidationError') {
@@ -52,16 +52,16 @@ exports.addSolution = async (req, res, next) => {
     
 }
 
-// @desc    Get a solution by id
-// @route   GET /api/v1/solutions/:id
+// @desc    Get a ticket by id
+// @route   GET /api/v1/tickets/:id
 // @access  Public
-exports.getSolution = async (req, res, next) => {
+exports.getTicket = async (req, res, next) => {
     try {
-        const solution = await Solution.findById(req.params.id);
+        const ticket = await Ticket.findById(req.params.id);
         return res.status(200).json({
             success: true,
-            count: solution.length,
-            data: solution
+            count: ticket.length,
+            data: ticket
         });
     } catch (error) {
         return res.status(500).json({
@@ -71,26 +71,26 @@ exports.getSolution = async (req, res, next) => {
     }
 }
 
-// @desc    Delete a solution
-// @route   DELETE /api/v1/solutions/:id
+// @desc    Delete a ticket
+// @route   DELETE /api/v1/tickets/:id
 // @access  Public
-exports.deleteSolution = async (req, res, next) => {
+exports.deleteTicket = async (req, res, next) => {
     try {
 
-        const solution = await Solution.findById(req.params.id);
+        const ticket = await Ticket.findById(req.params.id);
 
-        if(!solution){
+        if(!ticket){
             return res.status(404).json({
                 success: false,
-                error: 'No solution found'
+                error: 'No ticket found'
             });
         }
 
-        await solution.remove();
+        await ticket.remove();
 
         return res.status(200).json({
             success: true,
-            data: solution
+            data: ticket
         });
 
     } catch (error) {
@@ -101,48 +101,48 @@ exports.deleteSolution = async (req, res, next) => {
     }
 }
 
-// @desc    Update a solution
-// @route   PATCH /api/v1/solutions/:id
+// @desc    Update a ticket
+// @route   PATCH /api/v1/tickets/:id
 // @access  Public
-exports.updateSolution = async (req, res, next) => {
+exports.updateTicket = async (req, res, next) => {
     try {
-        const solution = await Solution.findById(req.params.id);
+        const ticket = await Ticket.findById(req.params.id);
 
-        if(!solution){
+        if(!ticket){
             return res.status(404).json({
                 success: false,
-                error: 'No solution found'
+                error: 'No tickets found'
             });
         }
 
-        if(req.body.issue != null) {
-            await Solution.findById(req.params.id).replaceOne({}, { 
+        if(req.body.solutionTried != null) {
+            await Ticket.findById(req.params.id).replaceOne({}, { 
                 $set: { 
-                    issue: req.body.issue
+                    solutionTried: req.body.solutionTried
                 } 
             });
         }
 
-        if(req.body.tags != null) {
-            await Solution.findById(req.params.id).replaceOne({}, { 
+        if(req.body.userInfo != null) {
+            await Ticket.findById(req.params.id).replaceOne({}, { 
                 $set: { 
-                    tags: req.body.tags
+                    userInfo: req.body.userInfo
                 } 
             });
         }
 
-        if(req.body.machine_tags != null) {
-            await Solution.findById(req.params.id).replaceOne({}, { 
+        if(req.body.dateAdded != null) {
+            await Ticket.findById(req.params.id).replaceOne({}, { 
                 $set: { 
-                    machine_tags: req.body.machine_tags
+                    dateAdded: req.body.dateAdded
                 } 
             });
         }
 
-        if(req.body.solutions != null) {
-            await Solution.findById(req.params.id).replaceOne({}, { 
+        if(req.body.dateClosed != null) {
+            await Ticket.findById(req.params.id).replaceOne({}, { 
                 $set: { 
-                    solutions: req.body.solutions
+                    dateClosed: req.body.dateClosed
                 } 
             });
         }
@@ -150,7 +150,7 @@ exports.updateSolution = async (req, res, next) => {
 
         return res.status(200).json({
             success: true,
-            data: solution
+            data: ticket
         });
 
     } catch (error) {
