@@ -2,15 +2,19 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
-var cors = require('cors')
-const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
+var cors = require('cors');
 
-dotenv.config({ path: './config/config.env' });
-
-connectDB();
+const connectMongo = require('./config/mongo_config');
+const connectMySQL = require('./config/mysql_config');
 
 const solutions = require('./routes/solutions');
 const tickets = require('./routes/tickets');
+
+dotenv.config({ path: './config/config.env' });
+
+connectMongo();
+connectMySQL();
 
 const app = express();
 
@@ -22,6 +26,9 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(
     '/api/v1/solutions', 
