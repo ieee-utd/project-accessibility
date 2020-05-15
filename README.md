@@ -3,7 +3,7 @@ Server for the CFTB Help desktop application
 
 ## Server
 
-Refer server documentation [here](https://github.com/ieee-utd/project-accessibility/blob/server/backend/readme.md)
+Refer server documentation [here](https://github.com/ieee-utd/project-accessibility/blob/server/backend/README.md)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
