@@ -32,18 +32,18 @@ Coming Soon
 ## Routes
 
 ### Solutions
-GET /api/v1/solutions - Get all solutions
-POST /api/v1/solutions - Add a solution
-GET /api/v1/solutions/:id - Get a solution by id
-PATCH /api/v1/solutions/:id - Update a solution
-DELETE /api/v1/solutions/:id - Delete a solution
+GET /api/v1/solutions - Get all solutions  
+POST /api/v1/solutions - Add a solution  
+GET /api/v1/solutions/:id - Get a solution by id  
+PATCH /api/v1/solutions/:id - Update a solution  
+DELETE /api/v1/solutions/:id - Delete a solution  
 
 ### Tickets
-GET /api/v1/tickets - Get all tickets
-POST /api/v1/tickets - Add a ticket
-GET /api/v1/tickets/:id - Get a ticket by id
-PATCH /api/v1/tickets/:id - Update a ticket
-DELETE /api/v1/tickets/:id - Delete a ticket
+GET /api/v1/tickets - Get all tickets  
+POST /api/v1/tickets - Add a ticket  
+GET /api/v1/tickets/:id - Get a ticket by id  
+PATCH /api/v1/tickets/:id - Update a ticket  
+DELETE /api/v1/tickets/:id - Delete a ticket  
 
 ## Iteration Log
 Version 1.2
