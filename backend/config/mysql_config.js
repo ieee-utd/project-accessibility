@@ -13,4 +13,4 @@ const connectMySQL = async () => {
     }
 }
 
-module.exports = connectMySQL;;
+module.exports = connectMySQL;

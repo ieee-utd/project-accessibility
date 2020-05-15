@@ -1,2 +1,5 @@
 runtime: nodejs
 env: flex
+
+beta_settings:
+  cloud_sql_instances: project-accessibility:us-west2:project-accessibility
