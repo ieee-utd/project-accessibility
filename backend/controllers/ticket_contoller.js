@@ -1,6 +1,9 @@
 'use strict';
 var Ticket = require('../models/ticket_model');
 
+// @desc    Get all tickets
+// @route   GET /api/v1/tickets
+// @access  Public
 exports.getTickets = function(req, res) {
     Ticket.getAllTickets(function(err, task) {
 
@@ -12,26 +15,31 @@ exports.getTickets = function(req, res) {
   });
 };
 
-
-
+// @desc    Add a ticket
+// @route   POST /api/v1/tickets
+// @access  Public
 exports.addTicket = function(req, res) {
-    var new_ticket = new Task(req.body);
+    var new_ticket = new Ticket(req.body);
 
     //handles null error 
-    if(!new_ticket.task || !new_ticket.status){
-        res.status(400).send({ error:true, message: 'Please provide all info' });
+    if(!new_ticket.solutionID){
+        res.status(400).send({ error:true, message: 'Please provide solutionID' });
+    }
+    if(!new_ticket.user_info){
+        res.status(400).send({ error:true, message: 'Please provide user info' });
     }
     
     else{
-        Task.createTicket(new_ticket, function(err, task) {
+        Ticket.createTicket(new_ticket, function(err, ticket) {
             if (err)
                 res.send(err);
-            res.json(task);
+            console.log(new_ticket);
+            res.json(ticket);
         });
     }
 };
 
-
+//TODO: Work on this
 exports.getTask = function(req, res) {
   Task.getTaskById(req.params.taskId, function(err, task) {
     if (err)
@@ -40,7 +48,7 @@ exports.getTask = function(req, res) {
   });
 };
 
-
+//TODO: Work on this
 exports.updateTask = function(req, res) {
   Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
     if (err)
@@ -49,7 +57,7 @@ exports.updateTask = function(req, res) {
   });
 };
 
-
+//TODO: Work on this
 exports.deleteTask = function(req, res) {
 
 

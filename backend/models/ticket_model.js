@@ -4,9 +4,9 @@ var sql = require('../config/config');
 //Task object constructor
 var Ticket = function(ticket){
     this.solutionID = ticket.solutionID;
-    this.user_info = ticket.solutionID;
+    this.user_info = ticket.user_info;
     this.created_at = new Date();
-    this.resolved_at = new Date();
+    this.resolved_at = ticket.resolved_at;
 };
 
 // @desc    Get all tickets
@@ -36,7 +36,7 @@ Ticket.createTicket = function (newTicket, result) {
         }
         else{
             console.log(res);
-            result(null, res.insertId);
+            result(null, res);
         }
     });           
 };
