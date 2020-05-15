@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getTickets, addTicket, getTicket , deleteTicket , updateTicket } = require('../controllers/ticket_contoller');
+const { getTickets, addTicket, getTask , deleteTask , updateTask } = require('../controllers/ticket_contoller');
 
 router
     .route('/')
@@ -9,8 +9,8 @@ router
 
 router
     .route('/:id')
-    .get(getTicket)
-    .delete(deleteTicket)
-    .patch(updateTicket);
+    .get(getTask)
+    .delete(deleteTask)
+    .patch(updateTask);
     
 module.exports = router;
