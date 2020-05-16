@@ -23,7 +23,7 @@ nodemon index.js
 ```
 
 ### Usage in Development Mode
-[Version 1.1](https://github.com/ieee-utd/project-accessibility/blob/48a66e34648936cded8b5fee35eeaccdd07d4be3/README.md) of server has been hosted at [this](https://project-accessibility.wl.r.appspot.com) GCP App Engine Instance
+This server has been hosted at [this](https://project-accessibility.wl.r.appspot.com) GCP App Engine Instance
 
 ## Models
 
@@ -49,10 +49,10 @@ DELETE /api/v1/tickets/:id - Delete a ticket
 Version 1.2
 
 ### Added Functionality from Last Iteration
-* Coverted GET and POST from MongoDB to MySQL
+* Coverted GET by ID, PATCH and DELETE from MongoDB to MySQL
 
 ### Planned Functionality for Next Iteration
-* Convert GET by ID, PATCH and DELETE from MongoDB to MySQL
+* Brush up on PATCH
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
