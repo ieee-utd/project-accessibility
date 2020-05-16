@@ -57,12 +57,11 @@ sql.query("Select * from tickets where id = ? ", id, function (err, res) {
     });   
 };
 
-//TODO: Work on this
 // @desc    Delete a ticket
 // @route   DELETE /api/v1/tickets/:id
 // @access  Public
 Ticket.updateById = function(id, ticket, result){
-    sql.query("UPDATE tickets SET ticket = ? WHERE id = ?", [ticket.ticket, id], function (err, res) {
+    sql.query("UPDATE tickets SET ? WHERE id = ?", [ticket, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
@@ -73,7 +72,6 @@ Ticket.updateById = function(id, ticket, result){
     }); 
 };
 
-//TODO: Work on this
 // @desc    Delete a ticket
 // @route   DELETE /api/v1/tickets/:id
 // @access  Public

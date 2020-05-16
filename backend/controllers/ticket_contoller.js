@@ -50,16 +50,14 @@ exports.getTicket = function(req, res) {
   });
 };
 
-//TODO: Work on this
 exports.updateTicket = function(req, res) {
-  Ticket.updateById(req.params.id, new Ticket(req.body), function(err, task) {
+  Ticket.updateById(req.params.id, new Ticket(req.body), function(err, ticket) {
     if (err)
       res.send(err);
-    res.json(task);
+    res.json(ticket);
   });
 };
 
-//TODO: Work on this
 exports.deleteTicket = function(req, res) {
   Ticket.remove( req.params.id, function(err, task) {
     if (err)
