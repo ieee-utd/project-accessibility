@@ -51,8 +51,8 @@ exports.getTicket = function(req, res) {
 };
 
 //TODO: Work on this
-exports.updateTask = function(req, res) {
-  Task.updateById(req.params.taskId, new Task(req.body), function(err, task) {
+exports.updateTicket = function(req, res) {
+  Ticket.updateById(req.params.id, new Ticket(req.body), function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
@@ -60,12 +60,10 @@ exports.updateTask = function(req, res) {
 };
 
 //TODO: Work on this
-exports.deleteTask = function(req, res) {
-
-
-  Task.remove( req.params.taskId, function(err, task) {
+exports.deleteTicket = function(req, res) {
+  Ticket.remove( req.params.id, function(err, task) {
     if (err)
       res.send(err);
-    res.json({ message: 'Task successfully deleted' });
+    res.json({ message: 'Ticket successfully deleted' });
   });
 };
