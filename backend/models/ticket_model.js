@@ -45,8 +45,8 @@ Ticket.createTicket = function (newTicket, result) {
 // @desc    Get a ticket by id
 // @route   GET /api/v1/tickets/:id
 // @access  Public
-Ticket.getTaskById = function (taskId, result) {
-sql.query("Select task from tasks where id = ? ", taskId, function (err, res) {             
+Ticket.getTicketById = function (id, result) {
+sql.query("Select * from tickets where id = ? ", id, function (err, res) {             
         if(err) {
             console.log("error: ", err);
             result(err, null);

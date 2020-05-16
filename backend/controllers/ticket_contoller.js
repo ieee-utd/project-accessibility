@@ -39,9 +39,11 @@ exports.addTicket = function(req, res) {
     }
 };
 
-//TODO: Work on this
-exports.getTask = function(req, res) {
-  Task.getTaskById(req.params.taskId, function(err, task) {
+// @desc    Get a ticket by id
+// @route   GET /api/v1/tickets/:id
+// @access  Public
+exports.getTicket = function(req, res) {
+  Ticket.getTicketById(req.params.id, function(err, task) {
     if (err)
       res.send(err);
     res.json(task);
