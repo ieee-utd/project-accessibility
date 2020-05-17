@@ -61,7 +61,7 @@ sql.query("Select * from tickets where id = ? ", id, function (err, res) {
 // @route   DELETE /api/v1/tickets/:id
 // @access  Public
 Ticket.updateById = function(id, ticket, result){
-    sql.query("UPDATE tickets SET ? WHERE id = ?", [ticket, id], function (err, res) {
+    sql.query("UPDATE tickets SET resolved_at = ? WHERE id = ?", [ticket.resolved_at, id], function (err, res) {
         if(err) {
             console.log("error: ", err);
             result(null, err);
