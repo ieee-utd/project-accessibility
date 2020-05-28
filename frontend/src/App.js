@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios';
 import Dashboard from './components/Dashboard'
 import SearchPage from './components/SearchPage'
 import SolutionDisplay from './components/SolutionDisplay'
@@ -60,7 +61,17 @@ class App extends React.Component {
     defaultNavButtons : [
       { name:'Back', id:1, executeWhenClicked: this.setAdminState },
       { name:'Home', id:2, executeWhenClicked: this.setAdminState }
-    ]
+    ],
+    solutionsFromBackend : []
+  }
+
+  componentDidMount() {
+    axios.get(`https://project-accessibility.wl.r.appspot.com/api/v1/solutions`)
+      .then(res => {
+        const solutions = res.data.data;
+        console.log(solutions);
+        this.setState({solutionsFromBackend: solutions});
+      })
   }
 
 
